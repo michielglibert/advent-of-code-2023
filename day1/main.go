@@ -49,7 +49,7 @@ func reverseString(input string) string {
 }
 
 func getDigitString(num string, rev bool) string {
-	if rev == true {
+	if rev {
 		return reverseString(num)
 	} else {
 		return num
@@ -59,49 +59,23 @@ func getDigitString(num string, rev bool) string {
 func checkForTextDigit(code string, rev bool) byte {
 	var index int
 
-	index = strings.Index(code, getDigitString("one", rev))
-	if index == 0 {
-		return '1'
+	digitsMap := map[string]byte{
+		"one":   '1',
+		"two":   '2',
+		"three": '3',
+		"four":  '4',
+		"five":  '5',
+		"six":   '6',
+		"seven": '7',
+		"eight": '8',
+		"nine":  '9',
 	}
 
-	index = strings.Index(code, getDigitString("two", rev))
-	if index == 0 {
-		return '2'
-	}
-
-	index = strings.Index(code, getDigitString("three", rev))
-	if index == 0 {
-		return '3'
-	}
-
-	index = strings.Index(code, getDigitString("four", rev))
-	if index == 0 {
-		return '4'
-	}
-
-	index = strings.Index(code, getDigitString("five", rev))
-	if index == 0 {
-		return '5'
-	}
-
-	index = strings.Index(code, getDigitString("six", rev))
-	if index == 0 {
-		return '6'
-	}
-
-	index = strings.Index(code, getDigitString("seven", rev))
-	if index == 0 {
-		return '7'
-	}
-
-	index = strings.Index(code, getDigitString("eight", rev))
-	if index == 0 {
-		return '8'
-	}
-
-	index = strings.Index(code, getDigitString("nine", rev))
-	if index == 0 {
-		return '9'
+	for key, value := range digitsMap {
+		index = strings.Index(code, getDigitString(key, rev))
+		if index == 0 {
+			return value
+		}
 	}
 
 	return 0
@@ -120,7 +94,8 @@ func main() {
 		var firstDigit byte
 		var lastDigit byte
 
-		for i := 0; i < len(value); i++ {
+		i := 0
+		for (firstDigit == 0 || lastDigit == 0) && i < len(value) {
 			if firstDigit == 0 {
 				if isDigit(value[i]) {
 					firstDigit = value[i]
@@ -137,6 +112,7 @@ func main() {
 					lastDigit = checkForTextDigit(reverseString(value)[i:], true)
 				}
 			}
+			i++
 		}
 
 		addedString := string(firstDigit) + string(lastDigit)
