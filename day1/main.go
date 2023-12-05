@@ -1,37 +1,11 @@
 package main
 
 import (
-	"bufio"
+	fileio "advent-of-code"
 	"fmt"
-	"os"
 	"strconv"
 	"strings"
 )
-
-func readFile() []string {
-	file, err := os.Open("./input")
-	if err != nil {
-		fmt.Println("Error opening file:", err)
-		return nil
-	}
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
-
-	var lines []string
-
-	for scanner.Scan() {
-		line := scanner.Text()
-		lines = append(lines, line)
-	}
-
-	if err := scanner.Err(); err != nil {
-		fmt.Println("Error reading file:", err)
-		return nil
-	}
-
-	return lines
-}
 
 func isDigit(char byte) bool {
 	return char >= '0' && char <= '9'
@@ -82,7 +56,7 @@ func checkForTextDigit(code string, rev bool) byte {
 }
 
 func main() {
-	lines := readFile()
+	lines := fileio.ReadFile("./input")
 
 	if lines == nil {
 		fmt.Println("Lines is undefined")
