@@ -1,9 +1,11 @@
-package fileio
+package utils
 
 import (
 	"bufio"
 	"fmt"
+	"log"
 	"os"
+	"strconv"
 )
 
 func ReadFile(path string) []string {
@@ -29,4 +31,20 @@ func ReadFile(path string) []string {
 	}
 
 	return lines
+}
+
+func StrToInt(str string) int {
+	num, err := strconv.Atoi(str)
+	if err != nil {
+		log.Fatal("Error converting seed string to number")
+	}
+	return num
+}
+
+func GetMulti(nums []int) int {
+	multi := 1
+	for _, num := range nums {
+		multi *= num
+	}
+	return multi
 }
