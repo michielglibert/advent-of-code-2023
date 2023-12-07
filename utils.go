@@ -48,3 +48,10 @@ func GetMulti(nums []int) int {
 	}
 	return multi
 }
+
+func ReverseArray(arr []int) {
+	length := len(arr)
+	for i := 0; i < length/2; i++ {
+		arr[i], arr[length-i-1] = arr[length-i-1], arr[i]
+	}
+}
