@@ -55,12 +55,3 @@ func ReverseArray(arr []int) {
 		arr[i], arr[length-i-1] = arr[length-i-1], arr[i]
 	}
 }
-
-func Every(elements []int, condition func(int) bool) bool {
-	for _, element := range elements {
-		if !condition(element) {
-			return false
-		}
-	}
-	return true
-}
