@@ -4,39 +4,7 @@ import (
 	utils "advent-of-code"
 	"fmt"
 	"math"
-	"os"
 )
-
-func galaxyToString(galaxy Galaxy) string {
-	var result string
-
-	for _, row := range galaxy {
-		for _, cell := range row {
-			if cell == 0 {
-				result += "."
-			} else {
-				result += string(cell)
-			}
-		}
-		result += "\n"
-	}
-
-	return result
-}
-
-func saveGalaxyToFile(galaxy Galaxy, filename string) error {
-	// Convert the network to a human-readable string
-	outputString := galaxyToString(galaxy)
-
-	// Write the string to the file using os.WriteFile
-	err := os.WriteFile(filename, []byte(outputString), 0644)
-	if err != nil {
-		return err
-	}
-
-	fmt.Printf("Galaxy saved to %s\n", filename)
-	return nil
-}
 
 type Galaxy [][]rune
 
