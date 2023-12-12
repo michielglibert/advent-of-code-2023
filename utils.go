@@ -33,6 +33,20 @@ func ReadFile(path string) []string {
 	return lines
 }
 
+func StrArrToRunes(strings []string) (runes []rune) {
+	for _, s := range strings {
+		runes = append(runes, rune(s[0]))
+	}
+	return
+}
+
+func StrArrToInt(strings []string) (ints []int) {
+	for _, s := range strings {
+		ints = append(ints, StrToInt(s))
+	}
+	return
+}
+
 func StrToInt(str string) int {
 	num, err := strconv.Atoi(str)
 	if err != nil {
